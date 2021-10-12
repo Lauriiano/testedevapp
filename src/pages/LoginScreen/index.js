@@ -35,22 +35,23 @@ export default () => {
         }
 
         const userAcess = await api.login(email, senha);
-        const lojas = await api.getLojas();
-
+        
         setMessageControl(true);
-
+        
         if(userAcess.status && userAcess.status == true) {
 
-            if(lojas.error || lojas == undefined) {
-                console.log('erro ao pegar as lojas');
-                return;
-            }
-            
             dispatch({
-                type: 'SET_TOKEN', 
+                type: 'SET_TOKEN',
                 payload: {token: userAcess.token}
             });
+            
+            const lojas = await api.getLojas();
 
+            if(lojas.error || lojas == undefined) { //Não Autorizado
+                setMessageControl(false);
+                alert(lojas.error);
+                return;
+            }
 
             dispatch({
                 type: 'SET_LOJAS',

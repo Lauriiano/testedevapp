@@ -34,10 +34,12 @@ export default () => {
         }
 
         let newUser = await api.cadUsers(nome, email, senha);
-
+        
         if(!newUser.error) {
-
+            
             const lojas = await api.getLojas();
+
+            console.log('aqui');
 
             dispatch({
                 type: 'SET_TOKEN',

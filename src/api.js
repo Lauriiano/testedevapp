@@ -30,11 +30,20 @@ export default () => {
     },
     getLojas: async () => {
 
+                console.log(token);
+
+                const dados = {
+                    METHOD: 'GET',
+                    headers: {
+                        "authorization": `Bearer ${token}`
+                    }
+                }
+
                 try {
 
-                    const data = await fetch(`${BASE_URL}lojas/estabelecimento`)
+                    const data = await fetch(`${BASE_URL}lojas/estabelecimento`, dados)
                     const json = await data.json()
-    
+                    console.log(json);
                     return json;
 
                 }catch(e) {
@@ -55,7 +64,8 @@ export default () => {
                 local
             }),
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "authorization": `Bearer ${token}`
             }
         }
 
@@ -106,7 +116,8 @@ export default () => {
                 local
             }),
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "authorization": `Bearer ${token}`
             }
         }
 
