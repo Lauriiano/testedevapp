@@ -1,4 +1,4 @@
-const BASE_URL = 'http://192.168.56.1:4000/api/';
+const BASE_URL = 'http://URL_AQUI:4000/api/';
 import { useSelector } from "react-redux";
 
 export default () => {
